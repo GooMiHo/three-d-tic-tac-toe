@@ -5,6 +5,7 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.shadowMapEnabled = true;
 document.body.appendChild(renderer.domElement);
 
 //===================== resize on widow resize =================================
@@ -72,18 +73,103 @@ const spotlight2 = new THREE.PointLight(0xFFFFFF, 2, 100);
 spotlight2.position.set(-50, -50, -50);
 scene.add(spotlight2);
 
+//========================== constrols =================================
+
+var raycaster = new THREE.Raycaster();
+var mouse = new THREE.Vector2();
+
+function onMouseMove(event) {
+
+  // calculate mouse position in normalized device coordinates
+  // (-1 to +1) for both components
+
+  mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+  mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
+
+}
+
+// function render() {
+
+// 	// update the picking ray with the camera and mouse position
+// 	raycaster.setFromCamera( mouse, camera );
+
+// 	// calculate objects intersecting the picking ray
+// 	var intersects = raycaster.intersectObjects( scene.children );
+
+// 	for ( var i = 0; i < intersects.length; i++ ) {
+
+// 		intersects[ i ].object.material.color.set( 0xff0000 );
+
+// 	}
+
+// 	renderer.render( scene, camera );
+
+// }
+
+// window.addEventListener( 'mousemove', onMouseMove, false );
+
+// window.requestAnimationFrame(render);
+
 
 //========================== constrols =================================
 
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enabled = false;
 
 const objects = [o, x, o2, x2, o3, x3, o4, x4, o5, x5];
 const controls2 = new THREE.DragControls(objects, camera, renderer.domElement);
 
+let onObj = false;
+
+function disabledControls() {
+  window.removeEventListener('mousedown', test)
+  controls.enabled = false;
+  console.log('hi')
+
+}
+
+//========================== render =================================
 
 var render = function () {
+
+  // update ray with the camera/mouse position
+  raycaster.setFromCamera(mouse, camera);
+
+  // find objects intersecting the ray
+  var intersects = raycaster.intersectObjects(objects, board);
+
+  for (var i = 0; i < intersects.length; i++) {
+    // intersects[i].object.rotation.x = Math.PI / 2;
+    // if (intersects[i].object.material.color) {
+    //   intersects[i].object.material.color.set(0xff0000);
+    // }
+  }
+
+  const setShiftKey = function (event) {
+    if (event.keyCode === 16 || event.charCode === 16) {
+      return true;
+    }
+    return false;
+  };
+
+  window.addEventListener('keydown', function(event) {
+    if (setShiftKey(event)) {
+      controls.enabled = true;
+    }
+  })
+
+  window.addEventListener('keyup', function(event) {
+    if (setShiftKey(event)) {
+      controls.enabled = false;
+    }
+  })
+
   renderer.render(scene, camera);
 };
+
+window.addEventListener('mousemove', onMouseMove, false);
+
+window.requestAnimationFrame(render);
 
 var GameLoop = function () {
   requestAnimationFrame(GameLoop);

@@ -1,3 +1,6 @@
+// Physijs.scripts.worker = '/physijs_worker.js';
+// Physijs.scripts.ammo = '/ammo.js';
+
 const Xs = (x, z) => {
   const material = new THREE.MeshLambertMaterial({color: 0x1825E8});
 
@@ -14,17 +17,17 @@ const Xs = (x, z) => {
 
   const singleGeometry = new THREE.Geometry();
 
-  rectangle1.updateMatrix(); // as needed
+  rectangle1.updateMatrix();
   singleGeometry.merge(rectangle1.geometry, rectangle1.matrix);
 
-  rectangle2.updateMatrix(); // as needed
+  rectangle2.updateMatrix();
   singleGeometry.merge(rectangle2.geometry, rectangle2.matrix);
 
-  const mesh = new THREE.Mesh(singleGeometry, material);
+  const xMesh = new THREE.Mesh(singleGeometry, material);
 
-  if (x) mesh.position.x = x;
-  if (z) mesh.position.z = z;
+  if (x) xMesh.position.x = x;
+  if (z) xMesh.position.z = z;
 
-  return mesh;
+  return xMesh;
 
 }

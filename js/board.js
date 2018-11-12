@@ -1,12 +1,12 @@
 function Board() {
-  const geometry = new THREE.BoxGeometry(10, 1, 10);
+  const geometry = new THREE.BoxGeometry(10, 10, 10);
     const cubeMaterials = [
-      new THREE.MeshBasicMaterial({ color: 0x4ECCC1}), // right
-      new THREE.MeshBasicMaterial({ color: 0x4ECCC1}), // left
-      new THREE.MeshLambertMaterial( { map: new THREE.TextureLoader().load('https://preview.ibb.co/hGczhf/tick-tac-toe-grid.png'), side: THREE.DoubleSide } ), //top
-      new THREE.MeshBasicMaterial({ color: 0x4ECCC1}), //bottom
-      new THREE.MeshBasicMaterial({ color: 0x4ECCC1}), //front
-      new THREE.MeshBasicMaterial({ color: 0x4ECCC1}) //back
+      new THREE.MeshLambertMaterial( { map: new THREE.TextureLoader().load('https://image.ibb.co/mAn8sq/cube-side2.jpg'), side: THREE.DoubleSide } ), // right
+      new THREE.MeshLambertMaterial( { map: new THREE.TextureLoader().load('https://image.ibb.co/mAn8sq/cube-side2.jpg'), side: THREE.DoubleSide } ), // left
+      new THREE.MeshLambertMaterial( { map: new THREE.TextureLoader().load('https://preview.ibb.co/noR7kA/cube-side1.jpg'), side: THREE.DoubleSide } ), //top
+      new THREE.MeshLambertMaterial( { map: new THREE.TextureLoader().load('https://preview.ibb.co/noR7kA/cube-side1.jpg'), side: THREE.DoubleSide } ), //bottom
+      new THREE.MeshLambertMaterial( { map: new THREE.TextureLoader().load('https://image.ibb.co/irG4yV/cube-side3.jpg'), side: THREE.DoubleSide } ), //front
+      new THREE.MeshLambertMaterial( { map: new THREE.TextureLoader().load('https://image.ibb.co/irG4yV/cube-side3.jpg'), side: THREE.DoubleSide } ) //back
     ];
     //LambertMaterial or Phong
     //const material = new THREE.MeshBasicMaterial({ color: 0x4ECCC1});

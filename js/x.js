@@ -1,8 +1,5 @@
-// Physijs.scripts.worker = '/physijs_worker.js';
-// Physijs.scripts.ammo = '/ammo.js';
-
-const Xs = (x, z) => {
-  const material = new THREE.MeshLambertMaterial({color: 0x1825E8});
+const Xs = (x, z, y) => {
+  const material = new THREE.MeshLambertMaterial({color: 0x0A5950});
 
   const geometry1 = new THREE.BoxGeometry(1.8, 0.4, 0.4, 0.1);
   const rectangle1 = new THREE.Mesh( geometry1, material);
@@ -13,7 +10,8 @@ const Xs = (x, z) => {
   const rectangle2 = new THREE.Mesh( geometry2, material);
   rectangle2.position.y = 1;
   rectangle2.position.x = 2;
-  rectangle2.rotation.y = Math.PI / 2;
+  rectangle2.rotation.y = 1.57;
+  rectangle2.rotation.x = 3.14;
 
   const singleGeometry = new THREE.Geometry();
 
@@ -27,6 +25,8 @@ const Xs = (x, z) => {
 
   if (x) xMesh.position.x = x;
   if (z) xMesh.position.z = z;
+  if (y) xMesh.position.y = y;
+  xMesh.rotation.x = 3.14;
 
   return xMesh;
 

@@ -8,8 +8,6 @@ function Board() {
       new THREE.MeshLambertMaterial( { map: new THREE.TextureLoader().load('https://image.ibb.co/irG4yV/cube-side3.jpg'), side: THREE.DoubleSide } ), //front
       new THREE.MeshLambertMaterial( { map: new THREE.TextureLoader().load('https://image.ibb.co/irG4yV/cube-side3.jpg'), side: THREE.DoubleSide } ) //back
     ];
-    //LambertMaterial or Phong
-    //const material = new THREE.MeshBasicMaterial({ color: 0x4ECCC1});
     const material = new THREE.MeshFaceMaterial(cubeMaterials);
     const rectangle = new THREE.Mesh(geometry, material);
     return rectangle;
